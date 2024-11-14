@@ -20,24 +20,24 @@
   </head>
 
   <body class="flex h-svh items-center justify-center bg-gray-100">
-    <div class="container w-fit overflow-hidden rounded-xl bg-white shadow-xl">
-      <div
-        id="login_show"
-        class="group relative flex flex-col gap-2 overflow-hidden p-10"
-      >
+    <div
+      id="auth_toggle"
+      class="group container w-fit overflow-hidden rounded-xl bg-white shadow-xl"
+    >
+      <div class="relative flex flex-col gap-2 overflow-hidden p-10">
         <div
           class="absolute bottom-0 left-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute bottom-0 left-0 h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:-bottom-full"
+            class="absolute -bottom-full left-0 h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:bottom-0"
           ></div>
           <div
-            class="absolute z-10 flex flex-col items-center justify-center gap-2 p-10 text-center transition-[transform,opacity] duration-[500ms,300ms] group-target:-translate-y-10 group-target:opacity-0"
+            class="absolute z-10 flex -translate-y-10 flex-col items-center justify-center gap-2 p-10 text-center opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:translate-y-0 group-target:opacity-100"
           >
             <h1 class="heading-1">Welcome To Our Web!</h1>
             <p>Silahkan login jika sudah punya akun.</p>
             <a
-              href="./#login_show"
+              href="#"
               class="mt-2 w-1/2 rounded-full border-2 border-white py-2 font-semibold text-white outline-none transition-all duration-[250ms] hover:border-green-500 hover:bg-white hover:text-green-500 focus:border-green-500 focus:bg-white focus:text-green-500"
             >
               Login
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div
-          class="translate-y-10 opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:z-20 group-target:translate-y-0 group-target:opacity-100 group-target:duration-[500ms,500ms]"
+          class="z-20 translate-y-0 opacity-100 transition-[transform,opacity] duration-[500ms,500ms] group-target:z-0 group-target:translate-y-10 group-target:opacity-0 group-target:duration-[500ms,300ms]"
         >
           <h1 class="heading-1 text-center">Login</h1>
           <form action="./login.php" method="post" class="flex flex-col gap-2">
@@ -81,10 +81,7 @@
         </div>
       </div>
 
-      <div
-        id="register_show"
-        class="group relative flex flex-col gap-2 overflow-hidden p-10"
-      >
+      <div class="relative flex flex-col gap-2 overflow-hidden p-10">
         <div
           class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
@@ -97,7 +94,7 @@
             <h1 class="heading-1">Welcome To Our Web!</h1>
             <p>Silahkan registrasi akun untuk login.</p>
             <a
-              href="./#register_show"
+              href="./#auth_toggle"
               class="mt-2 w-1/2 rounded-full border-2 border-white py-2 font-semibold text-white outline-none transition-all duration-[250ms] hover:border-green-500 hover:bg-white hover:text-green-500 focus:border-green-500 focus:bg-white focus:text-green-500"
             >
               Register
