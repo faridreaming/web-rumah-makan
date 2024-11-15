@@ -7,5 +7,5 @@ body {
 }
 
 .heading-1 {
-  @apply text-4xl font-extrabold;
+  @apply text-3xl font-extrabold;
 }
