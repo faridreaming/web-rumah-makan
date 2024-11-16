@@ -22,7 +22,7 @@
   <body class="flex h-svh items-center justify-center bg-gray-100">
     <div
       id="auth_toggle"
-      class="group container w-fit overflow-hidden rounded-xl bg-white shadow-xl"
+      class="group container flex w-fit flex-col overflow-hidden rounded-xl bg-white shadow-xl sm:flex-row"
     >
       <div class="relative flex flex-col gap-2 overflow-hidden p-10">
         <div
