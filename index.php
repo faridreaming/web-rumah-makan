@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Welcome To Our Web!</title>
 
     <link rel="stylesheet" href="./dist/output.css" />
     <link
@@ -29,7 +29,7 @@
           class="absolute bottom-0 left-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute -bottom-full left-0 h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:bottom-0"
+            class="absolute -bottom-full left-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:bottom-0"
           ></div>
           <div
             class="absolute z-10 flex -translate-y-10 flex-col items-center justify-center gap-2 p-10 text-center opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:translate-y-0 group-target:opacity-100"
@@ -86,7 +86,7 @@
           class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:-top-full"
+            class="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:-top-full"
           ></div>
           <div
             class="absolute z-10 flex flex-col items-center justify-center gap-2 p-10 text-center transition-[transform,opacity] duration-[500ms,300ms] group-target:-translate-y-10 group-target:opacity-0"
