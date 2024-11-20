@@ -31,10 +31,13 @@
           class="absolute bottom-0 left-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute -bottom-full right-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:bottom-0 sm:-right-full sm:bottom-0 sm:group-target:right-0"
+            class="absolute -bottom-full right-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:bottom-0 sm:hidden"
           ></div>
           <div
-            class="absolute z-10 flex -translate-y-10 flex-col items-center justify-center gap-2 p-10 text-center opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:translate-y-0 group-target:opacity-100"
+            class="absolute -right-full bottom-0 hidden h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:right-0 sm:block"
+          ></div>
+          <div
+            class="absolute z-10 flex -translate-y-10 flex-col items-center justify-center gap-2 p-10 text-center opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:translate-y-0 group-target:opacity-100 sm:-translate-x-10 sm:translate-y-0 sm:group-target:translate-x-0"
           >
             <h1 class="heading-1">Welcome To Our Web!</h1>
             <p>Silahkan login jika sudah punya akun.</p>
@@ -90,10 +93,13 @@
           class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:-top-full sm:group-target:-left-full sm:group-target:top-0"
+            class="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:-top-full sm:hidden"
           ></div>
           <div
-            class="absolute z-10 flex flex-col items-center justify-center gap-2 p-10 text-center transition-[transform,opacity] duration-[500ms,300ms] group-target:-translate-y-10 group-target:opacity-0"
+            class="absolute left-0 top-0 hidden h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:-left-full group-target:top-0 sm:block"
+          ></div>
+          <div
+            class="absolute z-10 flex flex-col items-center justify-center gap-2 p-10 text-center transition-[transform,opacity] duration-[500ms,300ms] group-target:-translate-y-10 group-target:opacity-0 sm:group-target:-translate-x-10 sm:group-target:translate-y-0"
           >
             <h1 class="heading-1">Welcome To Our Web!</h1>
             <p>Silahkan registrasi akun untuk login.</p>
