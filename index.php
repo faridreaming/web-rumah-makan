@@ -22,7 +22,7 @@
   <body class="flex h-svh items-center justify-center bg-gray-100">
     <div
       id="auth_toggle"
-      class="group container flex w-fit flex-col overflow-hidden rounded-xl bg-white shadow-xl sm:flex-row"
+      class="group container flex w-full flex-col overflow-hidden bg-white shadow-xl sm:w-fit sm:flex-row sm:rounded-xl"
     >
       <div
         class="relative flex flex-col items-center justify-center gap-2 overflow-hidden p-10"
@@ -47,6 +47,7 @@
             >
               Login
             </a>
+            <p class="text-xs">Copyright &copy; 2024</p>
           </div>
         </div>
         <div
@@ -109,6 +110,7 @@
             >
               Register
             </a>
+            <p class="text-xs">Copyright &copy; 2024</p>
           </div>
         </div>
         <div
