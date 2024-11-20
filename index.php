@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,10 +35,10 @@
           class="absolute bottom-0 left-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute -bottom-full right-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:bottom-0 sm:hidden"
+            class="absolute -bottom-full right-0 h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:bottom-0 sm:hidden sm:bg-gradient-to-r"
           ></div>
           <div
-            class="absolute -right-full bottom-0 hidden h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:right-0 sm:block"
+            class="absolute -right-full bottom-0 hidden h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:right-0 sm:block sm:bg-gradient-to-r"
           ></div>
           <div
             class="absolute z-10 flex -translate-y-10 flex-col items-center justify-center gap-2 p-10 text-center opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:translate-y-0 group-target:opacity-100 sm:-translate-x-10 sm:translate-y-0 sm:group-target:translate-x-0"
@@ -54,13 +58,24 @@
           class="z-20 translate-y-0 opacity-100 transition-[transform,opacity] duration-[500ms,500ms] group-target:z-0 group-target:translate-y-10 group-target:opacity-0 group-target:duration-[500ms,300ms] sm:translate-x-0 sm:group-target:translate-x-10 sm:group-target:translate-y-0"
         >
           <h1 class="heading-1 text-center">Login</h1>
-          <form action="./login.php" method="post" class="flex flex-col gap-2">
+          <form
+            action="./execute.php"
+            method="post"
+            class="flex flex-col gap-2"
+          >
             <div class="flex flex-col gap-1">
               <label for="username">Username</label>
               <input
                 type="text"
                 name="username"
                 id="username"
+                <?php
+                if (isset($_SESSION["error"]) && isset($_SESSION["errorType"]) && $_SESSION["errorType"] === "login") {
+                  if ($_SESSION["errorType"] === "login") {
+                    echo "value=\"{$_SESSION["username"]}\"";
+                  }
+                }
+                ?>
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
                 spellcheck="false"
               />
@@ -71,10 +86,24 @@
                 type="password"
                 name="password"
                 id="password"
+                <?php
+                if (isset($_SESSION["error"]) && isset($_SESSION["errorType"]) && $_SESSION["errorType"] === "login") {
+                  if ($_SESSION["errorType"] === "login") {
+                    echo "value=\"{$_SESSION["password"]}\"";
+                  }
+                }
+                ?>
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
                 spellcheck="false"
               />
             </div>
+            <?php
+            if (isset($_SESSION["error"]) && $_SESSION["errorType"] === "login") {
+              echo "<p class='text-center text-sm text-red-500'>" . $_SESSION["error"] . "</p>";
+              unset($_SESSION["error"]);
+              unset($_SESSION["errorType"]);
+            }
+            ?>
             <button
               type="submit"
               name="login"
@@ -94,10 +123,10 @@
           class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-2 p-10 text-center text-white transition-all"
         >
           <div
-            class="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:-top-full sm:hidden"
+            class="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:-top-full sm:hidden sm:bg-gradient-to-r"
           ></div>
           <div
-            class="absolute left-0 top-0 hidden h-full w-full bg-gradient-to-r from-lime-500 to-green-500 transition-all group-target:-left-full group-target:top-0 sm:block"
+            class="absolute left-0 top-0 hidden h-full w-full bg-gradient-to-b from-lime-500 to-green-500 transition-all group-target:-left-full group-target:top-0 sm:block sm:bg-gradient-to-r"
           ></div>
           <div
             class="absolute z-10 flex flex-col items-center justify-center gap-2 p-10 text-center transition-[transform,opacity] duration-[500ms,300ms] group-target:-translate-y-10 group-target:opacity-0 sm:group-target:-translate-x-10 sm:group-target:translate-y-0"
@@ -118,7 +147,7 @@
         >
           <h1 class="heading-1 text-center">Register</h1>
           <form
-            action="./register.php"
+            action="./execute.php"
             method="post"
             class="flex flex-col gap-2"
           >
@@ -143,12 +172,12 @@
               />
             </div>
             <div class="flex flex-col gap-1">
-              <label for="confirm_password">Confirm Password</label>
+              <label for="number">Phone Number</label>
               <input
-                type="password"
-                name="confirm_password"
-                id="confirm_password"
-                class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
+                type="number"
+                name="number"
+                id="number"
+                class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] [appearance:textfield] focus:border-gray-800 focus:text-gray-800 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                 spellcheck="false"
               />
             </div>
