@@ -47,7 +47,7 @@
           </div>
         </div>
         <div
-          class="z-20 translate-y-0 opacity-100 transition-[transform,opacity] duration-[500ms,500ms] group-target:z-0 group-target:translate-y-10 group-target:opacity-0 group-target:duration-[500ms,300ms]"
+          class="z-20 translate-y-0 opacity-100 transition-[transform,opacity] duration-[500ms,500ms] group-target:z-0 group-target:translate-y-10 group-target:opacity-0 group-target:duration-[500ms,300ms] sm:translate-x-0 sm:group-target:translate-x-10 sm:group-target:translate-y-0"
         >
           <h1 class="heading-1 text-center">Login</h1>
           <form action="./login.php" method="post" class="flex flex-col gap-2">
@@ -106,7 +106,7 @@
           </div>
         </div>
         <div
-          class="-translate-y-10 opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:z-20 group-target:translate-y-0 group-target:opacity-100 group-target:duration-[500ms,500ms]"
+          class="-translate-y-10 opacity-0 transition-[transform,opacity] duration-[500ms,300ms] group-target:z-20 group-target:translate-y-0 group-target:opacity-100 group-target:duration-[500ms,500ms] sm:-translate-x-10 sm:translate-y-0 sm:group-target:translate-x-0"
         >
           <h1 class="heading-1 text-center">Register</h1>
           <form
