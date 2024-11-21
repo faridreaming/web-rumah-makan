@@ -69,6 +69,7 @@ session_start();
                 type="text"
                 name="username"
                 id="username"
+                required
                 <?php
                 if (isset($_SESSION["error"]) && isset($_SESSION["errorType"]) && $_SESSION["errorType"] === "login") {
                   if ($_SESSION["errorType"] === "login") {
@@ -86,6 +87,7 @@ session_start();
                 type="password"
                 name="password"
                 id="password"
+                required
                 <?php
                 if (isset($_SESSION["error"]) && isset($_SESSION["errorType"]) && $_SESSION["errorType"] === "login") {
                   if ($_SESSION["errorType"] === "login") {
@@ -157,8 +159,9 @@ session_start();
                 type="text"
                 name="register_username"
                 id="register_username"
-                class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
+                required
                 spellcheck="false"
+                class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
               />
             </div>
             <div class="flex flex-col gap-1">
@@ -167,8 +170,9 @@ session_start();
                 type="password"
                 name="register_password"
                 id="register_password"
-                class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
+                required
                 spellcheck="false"
+                class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
               />
             </div>
             <div class="flex flex-col gap-1">
@@ -177,6 +181,7 @@ session_start();
                 type="number"
                 name="number"
                 id="number"
+                required
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] [appearance:textfield] focus:border-gray-800 focus:text-gray-800 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                 spellcheck="false"
               />
