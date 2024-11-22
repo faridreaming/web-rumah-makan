@@ -69,16 +69,14 @@ session_start();
                 type="text"
                 name="username"
                 id="username"
+                spellcheck="false"
                 required
                 <?php
-                if (isset($_SESSION["error"]) && isset($_SESSION["errorType"]) && $_SESSION["errorType"] === "login") {
-                  if ($_SESSION["errorType"] === "login") {
-                    echo "value=\"{$_SESSION["username"]}\"";
-                  }
+                if (isset($_SESSION["errorAuth"]) && $_SESSION["errorAuth"]["type"] === "login") {
+                  echo "value='" . $_SESSION["errorAuth"]["username"] . "'";
                 }
                 ?>
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
-                spellcheck="false"
               />
             </div>
             <div class="flex flex-col gap-1">
@@ -87,23 +85,20 @@ session_start();
                 type="password"
                 name="password"
                 id="password"
+                spellcheck="false"
                 required
                 <?php
-                if (isset($_SESSION["error"]) && isset($_SESSION["errorType"]) && $_SESSION["errorType"] === "login") {
-                  if ($_SESSION["errorType"] === "login") {
-                    echo "value=\"{$_SESSION["password"]}\"";
-                  }
+                if (isset($_SESSION["errorAuth"]) && $_SESSION["errorAuth"]["type"] === "login") {
+                  echo "value='" . $_SESSION["errorAuth"]["password"] . "'";
                 }
                 ?>
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
-                spellcheck="false"
               />
             </div>
             <?php
-            if (isset($_SESSION["error"]) && $_SESSION["errorType"] === "login") {
-              echo "<p class='text-center text-sm text-red-500'>" . $_SESSION["error"] . "</p>";
-              unset($_SESSION["error"]);
-              unset($_SESSION["errorType"]);
+            if (isset($_SESSION["errorAuth"]) && $_SESSION["errorAuth"]["type"] === "login") {
+              echo "<p class='text-center text-sm text-red-500'>" . $_SESSION["errorAuth"]["message"] . "</p>";
+              unset($_SESSION["errorAuth"]);
             }
             ?>
             <button
@@ -159,8 +154,8 @@ session_start();
                 type="text"
                 name="register_username"
                 id="register_username"
-                required
                 spellcheck="false"
+                required
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
               />
             </div>
@@ -170,8 +165,8 @@ session_start();
                 type="password"
                 name="register_password"
                 id="register_password"
-                required
                 spellcheck="false"
+                required
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] focus:border-gray-800 focus:text-gray-800"
               />
             </div>
@@ -181,9 +176,9 @@ session_start();
                 type="number"
                 name="number"
                 id="number"
+                spellcheck="false"
                 required
                 class="rounded border-2 border-gray-400 p-1 text-gray-400 outline-none transition-all duration-[250ms] [appearance:textfield] focus:border-gray-800 focus:text-gray-800 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                spellcheck="false"
               />
             </div>
             <button
