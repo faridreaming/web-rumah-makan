@@ -36,10 +36,63 @@ if (isset($_POST["login"])) {
     }
 
     // Jika username atau password salah
-    $_SESSION["error"] = "Username atau password salah.";
-    $_SESSION["errorType"] = "login";
-    $_SESSION["username"] = $username;
-    $_SESSION["password"] = $password;
+    $_SESSION["errorAuth"] = [
+        "message" => "Username atau password salah.",
+        "type" => "login",
+        "username" => $username,
+        "password" => $password
+    ];
     header("Location: index.php");
     exit();
+}
+
+// Register
+if (isset($_POST["register"])) {
+    $username = mysqli_real_escape_string($conn, $_POST["register_username"]);
+    $password = mysqli_real_escape_string($conn, $_POST["register_password"]);
+    $number = mysqli_real_escape_string($conn, $_POST["number"]);
+
+    // Cek apakah username sudah ada di tabel admin atau user
+    $queryCheck = "SELECT username FROM (
+        SELECT username FROM admin
+        UNION
+        SELECT username FROM user
+    ) AS combined WHERE username = '$username'";
+
+    $resultCheck = mysqli_query($conn, $queryCheck);
+
+    if ($resultCheck && mysqli_num_rows($resultCheck) > 0) {
+        $_SESSION["errorAuth"] = [
+            "message" => "Username sudah terdaftar.",
+            "type" => "register",
+            "username" => $username,
+            "password" => $password,
+            "number" => $number
+        ];
+        header("Location: index.php#auth_toggle");
+        exit();
+    }
+
+    // Insert ke tabel user
+    $queryInsert = "INSERT INTO user (username, no_hp, password) VALUES ('$username', '$number', '$password')";
+    $resultInsert = mysqli_query($conn, $queryInsert);
+
+    if ($resultInsert) {
+        $_SESSION["successAuth"] = [
+            "message" => "Pendaftaran berhasil! Silakan login.",
+            "type" => "register"
+        ];
+        header("Location: index.php#auth_toggle");
+        exit();
+    } else {
+        $_SESSION["errorAuth"] = [
+            "message" => "Terjadi kesalahan saat pendaftaran. Silakan coba lagi.",
+            "type" => "register",
+            "username" => $username,
+            "password" => $password,
+            "number" => $number
+        ];
+        header("Location: index.php#auth_toggle");
+        exit();
+    }
 }
