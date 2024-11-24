@@ -1,9 +1,12 @@
 <?php
 session_start();
-// if (!isset($_SESSION["username"])) {
-//   header("Location: index.php");
-//   exit;
-// }
+if (isset($_SESSION["username"]) && $_SESSION["role"] === "admin") {
+  header("Location: dashboard.php");
+  exit();
+} else if (isset($_SESSION["username"]) && $_SESSION["role"] === "user") {
+  header("Location: app.php");
+  exit();
+}
 ?>
 
 <?php
