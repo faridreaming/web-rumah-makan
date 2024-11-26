@@ -30,7 +30,7 @@ if (isset($_POST["login"])) {
     if ($password === $rowUser["password"]) {
       $_SESSION["username"] = $username;
       $_SESSION["role"] = "user";
-      header("Location: main.php");
+      header("Location: app.php");
       exit();
     }
   }
