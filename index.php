@@ -201,7 +201,6 @@ require_once("./components/head.php");
       </div>
     </div>
   </div>
-  <script src="./dist/js/script.js"></script>
 </body>
 
 </html>
