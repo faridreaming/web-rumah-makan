@@ -18,19 +18,21 @@ require_once('./components/head.php');
 <title>Dashboard | Bunga ACC</title>
 </head>
 
-<body class="p-2 h-svh flex flex-col gap-2">
+<body class="p-2 h-svh flex flex-col gap-2 no-transition">
   <header class="bg-green-500 shadow-[0_4px_0_0_black] mb-[4px] shadow-green-600 rounded-md flex p-2 items-center justify-between">
     <nav class="flex items-center gap-4 w-full sm:w-fit relative">
-      <div class="sm:hidden absolute z-10 rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" class="fill-white">
-          <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-        </svg>
-      </div>
+      <div id="nav-toggle">
+        <div class="sm:hidden absolute z-10 rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" class="fill-white">
+            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+          </svg>
+        </div>
 
-      <div class="rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" class="fill-white">
-          <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-        </svg>
+        <div class="rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" class="fill-white">
+            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+          </svg>
+        </div>
       </div>
 
       <div class="absolute sm:static w-full flex justify-center">
@@ -44,16 +46,18 @@ require_once('./components/head.php');
       </div>
     </nav>
 
-    <a href="./logout.php" title="Logout" class="rounded h-full aspect-square sm:flex items-center justify-center bg-white p-2 hover:bg-green-200 transition duration-300 ease-in-out hidden">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-green-500">
-        <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
-      </svg>
-    </a>
+    <form action="./execute.php" method="post" onsubmit="return confirm('Apakah Anda yakin ingin logout?')" class="h-full">
+      <button type="submit" name="logout" title="Logout" class="group rounded h-full aspect-square sm:flex items-center justify-center bg-white p-2 hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-red-500 group-hover:fill-red-300 transition duration-300 ease-in-out">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+        </svg>
+      </button>
+    </form>
   </header>
 
-  <div class="flex h-full gap-2">
-    <nav class="h-full bg-white border-2 border-gray-200 rounded-md w-fit p-2 font-medium text-sm text-gray-700 flex flex-col gap-6 justify-between">
-      <ul class="flex flex-col gap-6 p-2">
+  <div class="flex h-full gap-2 relative">
+    <nav id="navbar" class="h-full bg-white border-2 border-gray-200 rounded-md w-fit p-2 font-medium text-xs sm:text-sm text-gray-700 flex flex-col gap-6 justify-between absolute -left-full transition-all duration-500 ease-in-out overflow-auto">
+      <ul class="flex flex-col gap-6 p-0 sm:p-2">
         <li class="flex flex-col gap-2">
           <h2 class="uppercase text-[10px] font-bold">Dashboard</h2>
           <ul>
@@ -111,32 +115,51 @@ require_once('./components/head.php');
         </li>
       </ul>
 
-      <a href="./logout.php" title="Logout" class="rounded flex items-center justify-center bg-green-500 p-2 hover:bg-green-300 transition duration-300 ease-in-out sm:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-white">
-          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
-        </svg>
-      </a>
+      <form action="./execute.php" method="post" onsubmit="return confirm('Apakah Anda yakin ingin logout?')" class="sm:hidden">
+        <button type="submit" name="logout" title="Logout" class="rounded flex items-center w-full justify-center bg-red-500 p-2 hover:bg-red-400 transition duration-300 ease-in-out">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-white">
+            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+          </svg>
+        </button>
+      </form>
     </nav>
 
-    <main class="p-2 border-2 w-full rounded-md border-gray-200">
+    <main id="main" class="border-2 w-full rounded-md border-gray-200 text-sm ml-0 transition-all duration-500 ease-in-out overflow-auto">
       <?php
+      function showBreadCrumb($parent)
+      {
+        global $page;
+        echo '
+          <div class="flex p-2 sm:p-4 border-b-2 border-gray-200 text-xs sm:text-sm">
+            <h3 class="font-medium">
+              ' . ucwords($parent) . ' <span class="text-gray-500">&rsaquo; ' . ucwords($page) . '</span>
+            </h3>
+          </div>
+        ';
+      }
       switch ($page) {
         case 'dashboard':
+          showBreadCrumb("dashboard");
           require_once('./pages/dashboard.php');
           break;
         case 'menu':
+          showBreadCrumb("app");
           require_once('./pages/menu.php');
           break;
         case 'pesanan':
+          showBreadCrumb("app");
           require_once('./pages/pesanan.php');
           break;
         case 'user':
+          showBreadCrumb("accounts");
           require_once('./pages/user.php');
           break;
         case 'admin':
+          showBreadCrumb("accounts");
           require_once('./pages/admin.php');
           break;
         default:
+          showBreadCrumb("dashboard");
           require_once('./pages/dashboard.php');
           break;
       }
@@ -144,6 +167,7 @@ require_once('./components/head.php');
     </main>
   </div>
 
+  <script src="./dist/js/script.js"></script>
 </body>
 
 </html>
