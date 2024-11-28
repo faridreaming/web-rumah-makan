@@ -9,3 +9,19 @@ body {
 .heading-1 {
   @apply text-3xl font-extrabold;
 }
+
+.nav-open #navbar {
+  @apply left-0;
+}
+
+.no-transition #navbar {
+  @apply transition-none;
+}
+
+.nav-open #main {
+  @apply ml-[calc(95.163px+8px+8px+8px+1.6px+1.6px)] sm:ml-[calc(122.350px+8px+8px+8px+1.6px+1.6px)];
+}
+
+.no-transition #main {
+  @apply transition-none;
+}
