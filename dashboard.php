@@ -22,13 +22,13 @@ require_once('./components/head.php');
   <header class="bg-green-500 shadow-[0_4px_0_0_black] mb-[4px] shadow-green-600 rounded-md flex p-2 items-center justify-between">
     <nav class="flex items-center gap-4 w-full sm:w-fit relative">
       <div id="nav-toggle">
-        <div class="sm:hidden absolute z-10 rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-2">
+        <div class="sm:hidden absolute z-10 rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-1 sm:p-2">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" class="fill-white">
             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
           </svg>
         </div>
 
-        <div class="rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-2">
+        <div class="rounded h-full aspect-square flex items-center justify-center hover:bg-black/15 transition duration-300 ease-in-out p-1 sm:p-2">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" class="fill-white">
             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
           </svg>
@@ -39,8 +39,8 @@ require_once('./components/head.php');
         <a href="" class="flex gap-2 items-center justify-center cursor-pointer w-fit">
           <img src="./dist/assets/logo-white.svg" alt="Bunga ACC" class="h-6 sm:h-9" />
           <div class="text-white leading-none flex flex-col">
-            <h1 class="font-extrabold text-sm sm:text-base">Dashboard</h1>
-            <small class="text-[10px] w-max sm:text-xs">Rumah Makan Padang</small>
+            <h1 class="font-extrabold text-sm sm:text-base">RM Padang</h1>
+            <small class="text-[10px] w-max sm:text-xs">Dashboard</small>
           </div>
         </a>
       </div>
@@ -126,40 +126,59 @@ require_once('./components/head.php');
 
     <main id="main" class="border-2 w-full rounded-md border-gray-200 text-sm ml-0 transition-all duration-500 ease-in-out overflow-auto">
       <?php
-      function showBreadCrumb($parent)
+      function showBreadCrumb($parent, $children)
       {
-        global $page;
+        $childrenText = implode(' &rsaquo; ', array_map('ucwords', $children));
         echo '
           <div class="flex p-2 sm:p-4 border-b-2 border-gray-200 text-xs sm:text-sm">
             <h3 class="font-medium">
-              ' . ucwords($parent) . ' <span class="text-gray-500">&rsaquo; ' . ucwords($page) . '</span>
+              ' . ucwords($parent) . ' <span class="text-gray-500">&rsaquo; ' . $childrenText . '</span>
             </h3>
           </div>
         ';
       }
+
       switch ($page) {
         case 'dashboard':
-          showBreadCrumb("dashboard");
+          showBreadCrumb("dashboard", [$page]);
           require_once('./pages/dashboard.php');
           break;
         case 'menu':
-          showBreadCrumb("app");
-          require_once('./pages/menu.php');
+          if (isset($_GET["action"])) {
+            $action = $_GET["action"];
+            switch ($action) {
+              case 'add':
+                showBreadCrumb("app", [$page, "tambah"]);
+                require_once('./forms/menu-add.php');
+                break;
+              case 'edit':
+                showBreadCrumb("app", [$page, "edit"]);
+                require_once('./forms/menu-edit.php');
+                break;
+              default:
+                showBreadCrumb("app", [$page]);
+                require_once('./pages/menu.php');
+                break;
+            }
+          } else {
+            showBreadCrumb("app", [$page]);
+            require_once('./pages/menu.php');
+          }
           break;
         case 'pesanan':
-          showBreadCrumb("app");
+          showBreadCrumb("app", [$page]);
           require_once('./pages/pesanan.php');
           break;
         case 'user':
-          showBreadCrumb("accounts");
+          showBreadCrumb("accounts", [$page]);
           require_once('./pages/user.php');
           break;
         case 'admin':
-          showBreadCrumb("accounts");
+          showBreadCrumb("accounts", [$page]);
           require_once('./pages/admin.php');
           break;
         default:
-          showBreadCrumb("dashboard");
+          showBreadCrumb("dashboard", [$page]);
           require_once('./pages/dashboard.php');
           break;
       }
