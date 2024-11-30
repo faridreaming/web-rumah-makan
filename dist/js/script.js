@@ -31,3 +31,18 @@ if (toast) {
     toast.remove();
   }, 3500);
 }
+
+// Gambar menu
+const gambar = document.getElementById("gambar");
+if (gambar) {
+  gambar.addEventListener("change", function () {
+    const fileNameDisplay = document.getElementById("file-name");
+    if (gambar.files.length > 0) {
+      let fileName = gambar.files[0].name;
+      if (fileName.length > 30) {
+        fileName = `...${fileName.slice(-30)}`;
+      }
+      fileNameDisplay.textContent = fileName;
+    }
+  });
+}
