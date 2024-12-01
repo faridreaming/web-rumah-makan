@@ -34,7 +34,7 @@ require_once("./components/head.php");
           <p>Silahkan login jika sudah punya akun.</p>
           <a
             href="#"
-            class="mt-2 w-1/2 rounded-full border-2 border-white py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:border-green-500 hover:bg-white hover:text-green-500 focus:border-green-500 focus:bg-white focus:text-green-500">
+            class="mt-2 w-1/2 rounded-full border-2 border-white py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:border-green-500 hover:bg-white hover:text-green-500 focus:border-green-500 focus:bg-white focus:text-green-500 uppercase">
             Login
           </a>
           <p class="text-xs">Copyright &copy; 2024</p>
@@ -93,7 +93,7 @@ require_once("./components/head.php");
             type="submit"
             name="login"
             id="login"
-            class="mx-auto mt-2 w-1/2 rounded-full bg-lime-500 py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:bg-lime-600 focus:bg-lime-600">
+            class="mx-auto mt-2 w-1/2 rounded-full bg-lime-500 py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:bg-lime-600 focus:bg-lime-600 uppercase">
             Login
           </button>
         </form>
@@ -114,7 +114,7 @@ require_once("./components/head.php");
           <p>Silahkan registrasi akun untuk login.</p>
           <a
             href="./#auth_toggle"
-            class="mt-2 w-1/2 rounded-full border-2 border-white py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:border-green-500 hover:bg-white hover:text-green-500 focus:border-green-500 focus:bg-white focus:text-green-500">
+            class="mt-2 w-1/2 rounded-full border-2 border-white py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:border-green-500 hover:bg-white hover:text-green-500 focus:border-green-500 focus:bg-white focus:text-green-500 uppercase">
             Register
           </a>
           <p class="text-xs">Copyright &copy; 2024</p>
@@ -194,7 +194,7 @@ require_once("./components/head.php");
             type="submit"
             name="register"
             id="register"
-            class="mx-auto mt-2 w-1/2 rounded-full bg-green-500 py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:bg-green-600 focus:bg-green-600">
+            class="mx-auto mt-2 w-1/2 rounded-full bg-green-500 py-2 font-semibold text-white outline-none transition-all ease-in-out duration-[250ms] hover:bg-green-600 focus:bg-green-600 uppercase">
             Register
           </button>
         </form>
