@@ -32,7 +32,7 @@
           <label for="gambar" id="file-name" class="flex items-center w-full px-2 py-1 border-2 border-gray-200 text-gray-400 cursor-pointer bg-white transition-all duration-300 group-focus-within:border-gray-400 group-focus-within:text-gray-800">
             Pilih Gambar
           </label>
-          <input type="file" name="gambar" id="gambar" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+          <input type="file" name="gambar" id="gambar" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
         </div>
         <div class="flex sm:flex-row flex-col gap-2 sm:col-span-2 place-self-end w-full sm:w-fit mt-2">
           <button type="reset" class="bg-gray-200 text-gray-600 p-2 px-4 rounded text-xs font-normal outline-none hover:text-gray-400 transition duration-300 ease-in-out sm:w-fit w-full ring-gray-300 focus:ring">Reset</button>
@@ -43,16 +43,15 @@
   </div>
 </div>
 <?php
-$message = isset($_SESSION["success"]) ? $_SESSION["success"] : (isset($_SESSION["error"]) ? $_SESSION["error"] : null);
-$messageType = isset($_SESSION["success"]) ? 'bg-gray-800' : (isset($_SESSION["error"]) ? 'bg-red-500' : '');
-
-if ($message) {
-  echo sprintf(
-    '<div id="toast-message" class="%s rounded p-2 fixed right-1/2 translate-x-1/2 bottom-[-100px] text-white font-medium w-fit transition-all duration-500 ease-in-out">%s</div>',
-    $messageType,
-    htmlspecialchars($message)
-  );
-
-  unset($_SESSION["success"], $_SESSION["error"]);
+if (isset($_SESSION["success"])) {
+  echo '<div id="toast-message" 
+    class="bg-gray-800 rounded p-2 fixed right-1/2 translate-x-1/2 bottom-[-100px] text-white font-medium w-fit transition-all duration-500 ease-in-out">'
+    . $_SESSION["success"] . '</div>';
+  unset($_SESSION["success"]);
+} else if (isset($_SESSION["error"])) {
+  echo '<div id="toast-message" 
+    class="bg-red-500 rounded p-2 fixed right-1/2 translate-x-1/2 bottom-[-100px] text-white font-medium w-fit transition-all duration-500 ease-in-out">'
+    . $_SESSION["error"] . '</div>';
+  unset($_SESSION["error"]);
 }
 ?>
