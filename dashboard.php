@@ -47,7 +47,7 @@ require_once('./components/head.php');
     </nav>
 
     <form action="./execute.php" method="post" onsubmit="return confirm('Apakah Anda yakin ingin logout?')" class="h-full">
-      <button type="submit" name="logout" title="Logout" class="group rounded h-full aspect-square sm:flex items-center justify-center bg-white p-2 hidden">
+      <button type="submit" name="logout" title="Logout" class="group outline-none rounded h-full aspect-square sm:flex items-center justify-center bg-white p-2 hidden">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-red-500 group-hover:fill-red-300 transition duration-300 ease-in-out">
           <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
         </svg>
@@ -116,7 +116,7 @@ require_once('./components/head.php');
       </ul>
 
       <form action="./execute.php" method="post" onsubmit="return confirm('Apakah Anda yakin ingin logout?')" class="sm:hidden">
-        <button type="submit" name="logout" title="Logout" class="rounded flex items-center w-full justify-center bg-red-500 p-2 hover:bg-red-400 transition duration-300 ease-in-out">
+        <button type="submit" name="logout" title="Logout" class="rounded outline-none flex items-center w-full justify-center bg-red-500 p-2 hover:bg-red-400 transition duration-300 ease-in-out">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-white">
             <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
           </svg>
@@ -124,7 +124,7 @@ require_once('./components/head.php');
       </form>
     </nav>
 
-    <main id="main" class="border-2 w-full rounded-md border-gray-200 text-sm ml-0 transition-all duration-500 ease-in-out overflow-auto">
+    <main id="dashboard-main" class="border-2 w-full rounded-md border-gray-200 text-sm ml-0 transition-all duration-500 ease-in-out overflow-auto">
       <?php
       function showBreadCrumb($parent, $children)
       {
@@ -156,7 +156,7 @@ require_once('./components/head.php');
       switch ($page) {
         case 'dashboard':
           showBreadCrumb("dashboard", [$page]);
-          require_once('./pages/dashboard.php');
+          require_once('./pages/admin/dashboard.php');
           break;
         case 'menu':
           if (isset($_GET["action"])) {
@@ -172,29 +172,29 @@ require_once('./components/head.php');
                 break;
               default:
                 showBreadCrumb("app", [$page]);
-                require_once('./pages/menu.php');
+                require_once('./pages/admin/menu.php');
                 break;
             }
           } else {
             showBreadCrumb("app", [$page]);
-            require_once('./pages/menu.php');
+            require_once('./pages/admin/menu.php');
           }
           break;
         case 'pesanan':
           showBreadCrumb("app", [$page]);
-          require_once('./pages/pesanan.php');
+          require_once('./pages/admin/pesanan.php');
           break;
         case 'user':
           showBreadCrumb("accounts", [$page]);
-          require_once('./pages/user.php');
+          require_once('./pages/admin/user.php');
           break;
         case 'admin':
           showBreadCrumb("accounts", [$page]);
-          require_once('./pages/admin.php');
+          require_once('./pages/admin/admin.php');
           break;
         default:
           showBreadCrumb("dashboard", [$page]);
-          require_once('./pages/dashboard.php');
+          require_once('./pages/admin/dashboard.php');
           break;
       }
       ?>
