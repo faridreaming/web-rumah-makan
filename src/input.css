@@ -18,10 +18,14 @@ body {
   @apply transition-none;
 }
 
-.nav-open #main {
+.nav-open #dashboard-main {
   @apply ml-[calc(95.163px+8px+8px+8px+1.6px+1.6px)] sm:ml-[calc(122.350px+8px+8px+8px+1.6px+1.6px)];
 }
 
-.no-transition #main {
+.nav-open #app-main {
+  @apply ml-[calc(80.575px+8px+8px+8px+1.6px+1.6px)] sm:ml-[calc(105.337px+8px+8px+8px+1.6px+1.6px)];
+}
+
+.no-transition * {
   @apply transition-none;
 }
