@@ -21,6 +21,7 @@ if (isset($_POST["login"])) {
     }
   }
 
+  // Cek ke tabel user
   $queryUser = "SELECT * FROM user WHERE username = '$username'";
   $resultUser = mysqli_query($conn, $queryUser);
 
@@ -34,7 +35,7 @@ if (isset($_POST["login"])) {
     }
   }
 
-
+  // Jika username atau password salah
   $_SESSION["errorAuth"] = [
     "message" => "Username atau password salah.",
     "type" => "login",
@@ -51,7 +52,7 @@ if (isset($_POST["register"])) {
   $password = mysqli_real_escape_string($conn, $_POST["register_password"]);
   $number = mysqli_real_escape_string($conn, $_POST["number"]);
 
-
+  // Cek apakah username sudah ada di tabel admin atau user
   $queryCheck = "SELECT username FROM (
         SELECT username FROM admin
         UNION
@@ -72,7 +73,7 @@ if (isset($_POST["register"])) {
     exit();
   }
 
-
+  // Insert ke tabel user
   $queryInsert = "INSERT INTO user (username, no_hp, password) VALUES ('$username', '$number', '$password')";
   $resultInsert = mysqli_query($conn, $queryInsert);
 
