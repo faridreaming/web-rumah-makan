@@ -16,7 +16,7 @@ require_once("./components/head.php");
 <title>Welcome To Our Web!</title>
 </head>
 
-<body class="flex h-svh items-center justify-center bg-gray-100">
+<body class="flex overflow-y-auto h-svh items-center justify-center bg-gray-100 relative no-transition">
   <div
     id="auth_toggle"
     class="group container flex w-full flex-col overflow-hidden bg-white shadow-xl sm:w-fit sm:flex-row sm:rounded-xl">
@@ -201,6 +201,13 @@ require_once("./components/head.php");
       </div>
     </div>
   </div>
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.body.classList.remove("no-transition");
+      }, 10);
+    });
+  </script>
 </body>
 
 </html>
