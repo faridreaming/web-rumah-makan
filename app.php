@@ -60,7 +60,7 @@ require_once('./components/head.php');
     </form>
   </header>
 
-  <div class="flex h-full overflow-auto gap-2 relative scrollbar-hidden">
+  <div class="flex h-full overflow-auto gap-2 relative">
     <nav id="navbar" class="h-full bg-white border-2 border-gray-200 rounded-md w-fit p-2 font-medium text-xs sm:text-sm text-gray-700 flex flex-col gap-6 justify-between absolute -left-full transition-all duration-500 ease-in-out overflow-auto">
       <ul class="flex flex-col gap-6 p-0 sm:p-2">
         <li class="flex flex-col gap-2">
@@ -129,7 +129,7 @@ require_once('./components/head.php');
       </form>
     </nav>
 
-    <main id="app-main" class="border-2 w-full rounded-md border-gray-200 text-sm ml-0 transition-all duration-500 ease-in-out overflow-auto">
+    <main id="app-main" class="border-2 w-full rounded-md border-gray-200 text-sm ml-0 transition-all duration-500 ease-in-out overflow-auto scrollbar-none">
       <?php
       function showBreadCrumb($parent, $children)
       {
