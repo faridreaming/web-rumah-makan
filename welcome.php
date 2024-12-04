@@ -32,7 +32,7 @@
     <!-- Navbar aligned to the right -->
     <nav class="space-x-4 flex items-center">
       <a href="#home" class="text-white hover:text-green-200">Beranda</a>
-      <a href="#about" class="text-white hover:text-green-200">Tentang Kami</a>
+      <a href="#about" class="text-white hover:text-green-200">Tentang</a>
       <a href="#menu" class="text-white hover:text-green-200">Menu</a>
       <a href="#contact" class="text-white hover:text-green-200">Kontak</a>
       <a href="./" class="text-white border border-white px-4 py-2 rounded-full hover:bg-white hover:text-green-700 transition">Login</a>
