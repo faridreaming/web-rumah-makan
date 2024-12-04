@@ -12,8 +12,7 @@ if (isset($_GET["page"])) {
 
 require_once "./functions.php";
 
-$menus = query("SELECT * FROM menu");
-$username = ucfirst($_SESSION["username"]);
+$username = $_SESSION["username"];
 ?>
 
 <?php
