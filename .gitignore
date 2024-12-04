@@ -1,2 +1,4 @@
 node_modules/
 .vscode/
+dist/imgs/menu
+dist/output.css
