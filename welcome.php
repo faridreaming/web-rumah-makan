@@ -125,7 +125,7 @@
         <h3 class="mt-4 text-xl font-bold text-green-700">Rendang</h3>
         <p class="mt-2 text-gray-600">Daging sapi yang dimasak perlahan dengan rempah-rempah khas Minang.</p>
         <p class="mt-4 font-semibold text-green-700">Rp 12.000</p>
-        <a href="login.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
+        <a href="index.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
       </div>
       <!-- Menu Item 2 -->
       <div class="bg-white rounded-lg shadow-md p-6 text-center">
@@ -133,7 +133,7 @@
         <h3 class="mt-4 text-xl font-bold text-green-700">Lele Goreng</h3>
         <p class="mt-2 text-gray-600">Lele yang digoreng crispy, disajikan dengan sambal pedas yang nikmat.</p>
         <p class="mt-4 font-semibold text-green-700">Rp 7.000</p>
-        <a href="login.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
+        <a href="index.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
       </div>
       <!-- Menu Item 3 -->
       <div class="bg-white rounded-lg shadow-md p-6 text-center">
@@ -141,7 +141,7 @@
         <h3 class="mt-4 text-xl font-bold text-green-700">Gulai Ayam</h3>
         <p class="mt-2 text-gray-600">Ayam yang dimasak dengan santan dan rempah-rempah khas Minang.</p>
         <p class="mt-4 font-semibold text-green-700">Rp 13.000</p>
-        <a href="login.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
+        <a href="index.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
       </div>
     </div>
   </div>
