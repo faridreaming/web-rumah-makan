@@ -35,7 +35,7 @@
       <a href="#about" class="text-white hover:text-green-200">Tentang Kami</a>
       <a href="#menu" class="text-white hover:text-green-200">Menu</a>
       <a href="#contact" class="text-white hover:text-green-200">Kontak</a>
-      <a href="#login" class="text-white border border-white px-4 py-2 rounded-full hover:bg-white hover:text-green-700 transition">Login</a>
+      <a href="./" class="text-white border border-white px-4 py-2 rounded-full hover:bg-white hover:text-green-700 transition">Login</a>
     </nav>
   </div>
 </header>
