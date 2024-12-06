@@ -44,12 +44,14 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="grid grid-cols-3 gap-4 text-center h-56">
         <div class='bg-blue-500 text-white py-16'>
@@ -111,4 +113,5 @@ $conn->close();
         });
     </script>
 </body>
+
 </html>
