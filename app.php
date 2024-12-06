@@ -164,7 +164,7 @@ require_once('./components/head.php');
           break;
         case 'pesanan':
           showBreadCrumb("app", [$page]);
-          // require_once('./pages/pesanan.php');
+          require_once('./pages/user/pesanan.php');
           break;
         case 'riwayat':
           showBreadCrumb("app", [$page]);
