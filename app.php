@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "user") {
+if (!isset($_SESSION["id_user"]) || $_SESSION["role"] !== "user") {
   header("Location: index.php");
   exit();
 }
@@ -12,7 +12,8 @@ if (isset($_GET["page"])) {
 
 require_once "./functions.php";
 
-$username = $_SESSION["username"];
+$id_user = $_SESSION["id_user"];
+$username = query("SELECT username FROM user WHERE id_user = $id_user")[0]["username"];
 ?>
 
 <?php
@@ -164,23 +165,23 @@ require_once('./components/head.php');
           break;
         case 'pesanan':
           showBreadCrumb("app", [$page]);
-          // require_once('./pages/pesanan.php');
+          require_once('./pages/user/pesanan.php');
           break;
         case 'riwayat':
           showBreadCrumb("app", [$page]);
-          // require_once('./pages/riwayat.php');
+          require_once('./pages/user/riwayat.php');
           break;
         case 'user':
           showBreadCrumb("settings", [$page]);
-          // require_once('./pages/user.php');
+          require_once('./pages/user/user.php');
           break;
         case 'about':
           showBreadCrumb("info", [$page]);
-          // require_once('./pages/about.php');
+          require_once('./pages/user/about.php');
           break;
         default:
           showBreadCrumb("app", [$page]);
-          // require_once('./pages/menu.php');
+          require_once('./pages/user/menu.php');
           break;
       }
       ?>
