@@ -1,26 +1,11 @@
-<!doctype html>
-<html lang="en" style="scroll-behavior: smooth">
+<?php
+require_once('./components/head.php');
+?>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bunga ACC - Selera Minang</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  <link rel="shortcut icon" href="./dist/assets/logo-white.svg" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    .hero-background {
-      background-size: cover;
-      background-position: center;
-      transition: background-image 1s ease-in-out;
-    }
-  </style>
+<title>Bunga ACC - Selera Minang</title>
 </head>
 
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100">
   <!-- Navbar -->
   <header class="bg-green-700 p-5">
     <div class="container mx-auto flex items-center justify-between">
@@ -41,7 +26,7 @@
     </div>
   </header>
 
-  <section id="home" class="relative flex items-center justify-center h-screen hero-background">
+  <section id="home" class="relative flex items-center justify-center h-screen bg-cover bg-center transition-all duration-1000 ease-in-out">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="relative z-10 text-center text-white px-4">
       <h1 class="text-4xl md:text-5xl font-bold">Selamat Datang di Rumah Makan Padang</h1>
@@ -122,26 +107,26 @@
       <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Menu Item 1 -->
         <div class="bg-white rounded-lg shadow-md p-6 text-center">
-          <img src="./dist/assets/rendang.jpg" alt="Rendang" class="w-full h-40 object-cover rounded-md" />
+          <img src="./dist/assets/rendang.webp" alt="Rendang" class="w-full h-40 object-cover rounded-md" />
           <h3 class="mt-4 text-xl font-bold text-green-700">Rendang</h3>
           <p class="mt-2 text-gray-600">Daging sapi yang dimasak perlahan dengan rempah-rempah khas Minang.</p>
-          <p class="mt-4 font-semibold text-green-700">Rp 12.000</p>
+          <p class="mt-4 font-semibold text-green-700">Rp 35.000</p>
           <a href="index.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
         </div>
         <!-- Menu Item 2 -->
         <div class="bg-white rounded-lg shadow-md p-6 text-center">
-          <img src="./dist/assets/lele-goreng.jpg" alt="Lele Gorrng" class="w-full h-40 object-cover rounded-md" />
+          <img src="./dist/assets/lele-goreng.webp" alt="Lele Gorrng" class="w-full h-40 object-cover rounded-md" />
           <h3 class="mt-4 text-xl font-bold text-green-700">Lele Goreng</h3>
           <p class="mt-2 text-gray-600">Lele yang digoreng crispy, disajikan dengan sambal pedas yang nikmat.</p>
-          <p class="mt-4 font-semibold text-green-700">Rp 7.000</p>
+          <p class="mt-4 font-semibold text-green-700">Rp 6.000</p>
           <a href="index.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
         </div>
         <!-- Menu Item 3 -->
         <div class="bg-white rounded-lg shadow-md p-6 text-center">
-          <img src="./dist/assets/gulai-ayam.jpg" alt="Gulai Ayam" class="w-full h-40 object-cover rounded-md" />
+          <img src="./dist/assets/gulai-ayam.webp" alt="Gulai Ayam" class="w-full h-40 object-cover rounded-md" />
           <h3 class="mt-4 text-xl font-bold text-green-700">Gulai Ayam</h3>
           <p class="mt-2 text-gray-600">Ayam yang dimasak dengan santan dan rempah-rempah khas Minang.</p>
-          <p class="mt-4 font-semibold text-green-700">Rp 13.000</p>
+          <p class="mt-4 font-semibold text-green-700">Rp 6.000</p>
           <a href="index.php" class="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300 w-full">Pesan Sekarang</a>
         </div>
       </div>
@@ -171,7 +156,7 @@
               <h3 class="text-xl font-semibold text-green-700">Hubungi Melalui WhatsApp</h3>
               <p class="mt-2 text-gray-600">Klik tombol di bawah ini untuk langsung menghubungi kami.</p>
               <a
-                href="https://wa.me/6281234567890?text=Halo%20Rumah%20Makan%20Bunga%20ACC,%20saya%20ingin%20bertanya%20tentang..."
+                href="https://wa.me/6283870921883?text=Halo%20Rumah%20Makan%20Bunga%20ACC,%20saya%20ingin%20bertanya%20tentang..."
                 target="_blank"
                 class="inline-block mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300">
                 <i class="fab fa-whatsapp mr-2"></i> Hubungi Kami
