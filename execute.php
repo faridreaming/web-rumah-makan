@@ -29,6 +29,7 @@ if (isset($_POST["login"])) {
     $rowUser = mysqli_fetch_assoc($resultUser);
     if ($password === $rowUser["password"]) {
       $_SESSION["username"] = $username;
+      $_SESSION["id_user"] = $rowUser["id_user"];
       $_SESSION["role"] = "user";
       header("Location: app.php");
       exit();
