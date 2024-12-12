@@ -1,20 +1,9 @@
 <?php
-if (isset($_SESSION["success"])) {
-  echo '<div id="toast-message" 
-    class="bg-gray-800 rounded p-2 fixed right-1/2 translate-x-1/2 bottom-[-100px] text-white font-medium w-fit transition-all duration-500 ease-in-out text-center">'
-    . $_SESSION["success"] . '</div>';
-  unset($_SESSION["success"]);
-} else if (isset($_SESSION["error"])) {
-  echo '<div id="toast-message" 
-    class="bg-red-500 rounded p-2 fixed right-1/2 translate-x-1/2 bottom-[-100px] text-white font-medium w-fit transition-all duration-500 ease-in-out text-center">'
-    . $_SESSION["error"] . '</div>';
-  unset($_SESSION["error"]);
-}
+require_once("./components/toast.php");
 
 $menus = query("SELECT * FROM menu");
 
-$user = query("SELECT id_user FROM user WHERE username = '$username'")[0];
-$id_user = $user['id_user'];
+$username = query("SELECT username FROM user WHERE id_user = $id_user")[0]["username"];
 $keranjang = query("SELECT k.*, m.nama_menu, m.harga_menu FROM keranjang k JOIN menu m ON k.id_menu = m.id_menu WHERE k.id_user = '$id_user'");
 
 if (isset($_POST["bersihkan_keranjang"])) {
@@ -105,7 +94,7 @@ foreach ($keranjang as $item) {
       Selamat datang di Rumah Makan Padang Bunga ACC. Silakan pilih menu favorit Anda.
     </p>
   </div>
-  <h2 class="mt-4 font-semibold text-gray-600 mb-2">Menu Hari Ini:</h2>
+  <h2 class="mt-4 font-semibold text-gray-600 mb-2">Menu Hari Ini</h2>
   <div class="overflow-x-auto scrollbar-none border-b-2 border-gray-200">
     <div class="flex space-x-2 pb-4">
       <?php foreach ($menus as $menu): ?>
@@ -172,7 +161,7 @@ foreach ($keranjang as $item) {
     </div>
   </div>
   <div class="flex justify-between items-center mt-4 mb-2">
-    <h2 class="font-semibold text-gray-600">Keranjang:</h2>
+    <h2 class="font-semibold text-gray-600">Keranjang</h2>
     <?php if (!empty($keranjang)): ?>
       <form action="" method="post">
         <button type="submit" name="bersihkan_keranjang" onclick="return confirm('Hapus semua menu dalam keranjang?')" class="font-medium text-xs sm:text-sm text-red-500 hover:text-red-300 transition duration-300 ease-in-out">Bersihkan Keranjang</button>
@@ -208,9 +197,7 @@ foreach ($keranjang as $item) {
           </tbody>
         </table>
       </div>
-      <div>
 
-      </div>
       <div class="sm:mt-4 flex justify-end gap-2">
         <div class="flex flex-col items-center w-full sm:w-fit gap-1">
           <span class="text-xs sm:text-sm font-medium hidden sm:inline">
@@ -227,7 +214,7 @@ foreach ($keranjang as $item) {
         </div>
       </div>
     <?php else: ?>
-      <div id="cart-message" class="w-full bg-blue-100 p-4 text-center rounded border-2 border-blue-200 sm:text-sm">
+      <div class="w-full bg-blue-100 p-4 text-center rounded border-2 border-blue-200 sm:text-sm">
         <p>Keranjang masih kosong.</p>
       </div>
     <?php endif; ?>
