@@ -1,114 +1,174 @@
 <?php
-require_once "./functions.php";
+// Konfigurasi Database
+$host = 'localhost';
+$dbname = 'rm_padang';
+$username = 'root';
+$password = '';
 
-// Ambil data dari tabel
-$sql_menu = "SELECT sum(stok) as total_stok FROM menu";
-$sql_pesanan = "SELECT sum(jumlah) as total_pembelian FROM pesanan";
-$sql_penghasilan = "SELECT sum(total) as total_penghasilan FROM pesanan";
-
-$result_menu = mysqli_query($conn, $sql_menu);
-$result_menu = mysqli_fetch_assoc($result_menu);
-$result_pesanan = mysqli_query($conn, $sql_pesanan);
-$result_pesanan = mysqli_fetch_assoc($result_pesanan);
-$result_penghasilan = mysqli_query($conn, $sql_penghasilan);
-$result_penghasilan = mysqli_fetch_assoc($result_penghasilan);
-
-// Data untuk chart
-$total_stok = $result_menu['total_stok'];
-$total_pembelian = $result_pesanan['total_pembelian'];
-$total_penghasilan = $result_penghasilan['total_penghasilan'];
-
-// Ambil data pembelian harian dari tabel pesanan
-$sql_pembelian_harian = "SELECT DATE(tanggal_pesanan) as tanggal, SUM(jumlah) as total_pembelian 
-                        FROM pesanan 
-                        GROUP BY DATE(tanggal_pesanan) 
-                        ORDER BY DATE(tanggal_pesanan) ASC";
-$result_pembelian_harian = mysqli_query($conn, $sql_pembelian_harian);
-
-// Periksa koneksi dan hasil query
-if (!$result_pembelian_harian) {
-    die("Query Error: " . mysqli_error($conn));
+try {
+  $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+  die("Koneksi database gagal: " . $e->getMessage());
 }
 
-// Siapkan data untuk chart
-$labels = [];
-$data = [];
-while ($row = mysqli_fetch_assoc($result_pembelian_harian)) {
-    $labels[] = $row['tanggal']; // Tanggal sebagai label
-    $data[] = $row['total_pembelian']; // Jumlah pembelian sebagai data
-}
+// Ambil Data untuk Grafik
+$daily_revenue = $pdo->query("SELECT tanggal_pesanan, SUM(total_harga) as total_pendapatan 
+                               FROM pesanan 
+                               GROUP BY tanggal_pesanan 
+                               ORDER BY tanggal_pesanan 
+                               LIMIT 7")
+  ->fetchAll(PDO::FETCH_ASSOC);
 
-// Tutup koneksi
-$conn->close();
+$order_status = $pdo->query("SELECT status_pesanan, COUNT(*) as jumlah 
+                              FROM pesanan 
+                              GROUP BY status_pesanan")
+  ->fetchAll(PDO::FETCH_ASSOC);
+
+$top_menu = $pdo->query("SELECT m.nama_menu, SUM(dp.jumlah) as total_terjual 
+                         FROM detail_pesanan dp 
+                         JOIN menu m ON dp.id_menu = m.id_menu 
+                         GROUP BY m.nama_menu 
+                         ORDER BY total_terjual DESC 
+                         LIMIT 5")
+  ->fetchAll(PDO::FETCH_ASSOC);
+
+// Statistik Tambahan
+$total_pendapatan = $pdo->query("SELECT SUM(total_harga) as total FROM pesanan")
+  ->fetch(PDO::FETCH_ASSOC)['total'];
+$total_pesanan = $pdo->query("SELECT COUNT(*) as total FROM pesanan")
+  ->fetch(PDO::FETCH_ASSOC)['total'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Restoran</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-    <div class="grid grid-cols-3 gap-4 text-center h-56">
-        <div class='bg-blue-500 text-white py-16'>
-            <h2 class='text-2xl font-bold'>Produk</h2>
-            <p class='text-4xl font-bold'><?= number_format($total_stok, 0, ',', '.'); ?></p>
-            <p class='text-sm'>Total Jumlah Stok Yang Tersedia</p>
-        </div>
-        <div class='bg-yellow-500 text-white py-16'>
-            <h2 class='text-2xl font-bold'>Pembelian</h2>
-            <p class='text-4xl font-bold'><?= number_format($total_pembelian, 0, ',', '.'); ?></p>
-            <p class='text-sm'>Total Pembelian 30 Hari Kebelakang</p>
-        </div>
-        <div class='bg-green-500 text-white py-16'>
-            <h2 class='text-2xl font-bold'>Penghasilan</h2>
-            <p class='text-4xl font-bold'>Rp. <?= number_format($total_penghasilan, 0, ',', '.'); ?></p>
-            <p class='text-sm'>Total Penghasilan Dalam Rupiah</p>
-        </div>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Dashboard Restoran</h1>
+
+    <!-- Kartu Statistik Utama -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-6 text-center">
+        <h3 class="text-gray-500 text-lg">Total Pendapatan</h3>
+        <p class="text-2xl font-bold text-green-600">Rp <?= number_format($total_pendapatan, 0, ',', '.') ?></p>
+      </div>
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-6 text-center">
+        <h3 class="text-gray-500 text-lg">Total Pesanan</h3>
+        <p class="text-2xl font-bold text-blue-600"><?= $total_pesanan ?></p>
+      </div>
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-6 text-center">
+        <h3 class="text-gray-500 text-lg">Pesanan Diproses</h3>
+        <p class="text-2xl font-bold text-yellow-600">
+          <?= array_values(array_filter($order_status, fn($item) => $item['status_pesanan'] == 'Diproses'))[0]['jumlah'] ?? 0 ?>
+        </p>
+      </div>
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-6 text-center">
+        <h3 class="text-gray-500 text-lg">Pesanan Selesai</h3>
+        <p class="text-2xl font-bold text-green-600">
+          <?= array_values(array_filter($order_status, fn($item) => $item['status_pesanan'] === 'Selesai'))[0]['jumlah'] ?? 0; ?>
+        </p>
+      </div>
     </div>
 
-    <!-- Canvas untuk Chart -->
-    <div style="width: 80%; margin: 50px auto;">
-        <canvas id="pembelianChart"></canvas>
+    <!-- Grafik -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Grafik Pendapatan Harian -->
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <h2 class="text-xl font-semibold mb-4">Pendapatan Harian</h2>
+        <canvas id="dailyRevenueChart"></canvas>
+      </div>
+
+      <!-- Grafik Status Pesanan -->
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <h2 class="text-xl font-semibold mb-4">Status Pesanan</h2>
+        <canvas id="orderStatusChart"></canvas>
+      </div>
+
+      <!-- Grafik Menu Terlaris -->
+      <div class="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <h2 class="text-xl font-semibold mb-4">Top 5 Menu Terlaris</h2>
+        <canvas id="topMenuChart"></canvas>
+      </div>
     </div>
 
-    <!-- Script Chart.js -->
-    <script>
-        const ctx = document.getElementById('pembelianChart').getContext('2d');
-        const pembelianChart = new Chart(ctx, {
-            type: 'bar', // Jenis chart
-            data: {
-                labels: <?= json_encode($labels); ?>, // Data tanggal (sumbu X)
-                datasets: [{
-                    label: 'Jumlah Pembelian Harian',
-                    data: <?= json_encode($data); ?>, // Data jumlah pembelian (sumbu Y)
-                    backgroundColor: 'rgba(75, 192, 192, 1)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true, // Sumbu Y dimulai dari 0
-                        title: {
-                            display: true,
-                            text: 'Jumlah Pembelian'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Tanggal'
-                        }
-                    }
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Data dari PHP
+      const dailyRevenueData = <?= json_encode($daily_revenue) ?>;
+      const orderStatusData = <?= json_encode($order_status) ?>;
+      const topMenuData = <?= json_encode($top_menu) ?>;
+
+      // Grafik Pendapatan Harian
+      new Chart(document.getElementById('dailyRevenueChart'), {
+        type: 'line',
+        data: {
+          labels: dailyRevenueData.map(item => item.tanggal_pesanan),
+          datasets: [{
+            label: 'Pendapatan (Rp)',
+            data: dailyRevenueData.map(item => item.total_pendapatan),
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return 'Rp ' + context.parsed.y.toLocaleString('id-ID');
                 }
+              }
             }
-        });
-    </script>
+          }
+        }
+      });
+
+      // Grafik Status Pesanan
+      new Chart(document.getElementById('orderStatusChart'), {
+        type: 'pie',
+        data: {
+          labels: orderStatusData.map(item => item.status_pesanan),
+          datasets: [{
+            data: orderStatusData.map(item => item.jumlah),
+            backgroundColor: ['#FF6384', '#36A2EB']
+          }]
+        }
+      });
+
+      // Grafik Menu Terlaris
+      new Chart(document.getElementById('topMenuChart'), {
+        type: 'bar',
+        data: {
+          labels: topMenuData.map(item => item.nama_menu),
+          datasets: [{
+            label: 'Total Terjual',
+            data: topMenuData.map(item => item.total_terjual),
+            backgroundColor: 'rgba(54, 162, 235, 0.5)'
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
+```

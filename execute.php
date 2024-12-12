@@ -15,6 +15,7 @@ if (isset($_POST["login"])) {
     $rowAdmin = mysqli_fetch_assoc($resultAdmin);
     if ($password === $rowAdmin["password"]) {
       $_SESSION["username"] = $username;
+      $_SESSION["id_admin"] = $rowAdmin["id_admin"];
       $_SESSION["role"] = "admin";
       header("Location: dashboard.php");
       exit();

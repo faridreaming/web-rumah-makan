@@ -44,7 +44,7 @@ if (isset($_POST['edit_user'])) {
     <div class="grid grid-cols-1 sm:grid-cols-2 sm:items-center gap-1 sm:gap-2">
       <div class="flex sm:flex-row flex-col gap-2 sm:col-span-2 place-self-end w-full sm:w-fit mt-2">
         <button type="reset" class="bg-gray-200 text-gray-600 p-2 px-4 rounded text-xs font-normal outline-none hover:text-gray-400 transition duration-300 ease-in-out sm:w-fit w-full ring-gray-300 focus:ring">Reset</button>
-        <button type="submit" name="edit_user" class="bg-blue-500 text-white p-2 px-4 rounded text-xs font-semibold outline-none hover:bg-blue-400 transition duration-300 ease-in-out sm:w-fit w-full focus:ring">Edit User</button>
+        <button type="submit" name="edit_user" onclick="return confirm('Apakah Anda yakin ingin mengedit user?')" class="bg-blue-500 text-white p-2 px-4 rounded text-xs font-semibold outline-none hover:bg-blue-400 transition duration-300 ease-in-out sm:w-fit w-full focus:ring">Edit User</button>
       </div>
     </div>
   </form>
